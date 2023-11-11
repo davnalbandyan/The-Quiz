@@ -52,7 +52,7 @@ let CQI = 0;
 let score = 0;
 
 function startQuiz(){
-    CQI = 0 // ամեն անգամ երբ սկսումա րեսեթա անում CQI ֊ը 0 ի
+    CQI = 0 // ամեն անգամ երբ սկսումա ռեսեթա անում CQI ֊ը 0 ի
     score = 0;     //նույն ձև score ը 
     next.innerHTML = "Next";
     showQuestion();
@@ -65,7 +65,7 @@ function showQuestion(){
     reset()
     let currentQuestion = question[CQI];
     let questionNumber = CQI + 1;
-    questionEL.innerHTML = questionNumber + ". " + currentQuestion.question
+    questionEL.innerHTML = questionNumber + ": " + currentQuestion.question
 
     currentQuestion.answers.forEach(item=>{
         const button = document.createElement("button");
@@ -74,6 +74,7 @@ function showQuestion(){
         answerBtns.appendChild(button);
         if(item.correct){
             button.dataset.correct = item.correct;
+            
         }
         button.addEventListener("click",selectAnswer)
     })
@@ -93,6 +94,7 @@ function selectAnswer(e){
      const isCorrect = selectedBtn.dataset.correct === "true";
      if(isCorrect){
         selectedBtn.classList.add("correct")
+        score++
      }else{
         selectedBtn.classList.add("incorrect")
      }
